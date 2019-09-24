@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -5,11 +7,6 @@ public class Main {
         double sumRectArea = 0.0;
         double sumTriangleArea = 0.0;
         double sumCircleArea = 0.0;
-
-
-        System.out.println("----------------------------------------TASK #1: ----------------------------------------");
-        Shape shape = new Shape("Red");
-        System.out.println(shape);
 
         System.out.println("----------------------------------------TASK #2: ----------------------------------------");
         Circle myCircle = new Circle("green", 10.0);
@@ -24,7 +21,8 @@ public class Main {
         System.out.println(myTriangle.toString() + ". " + myTriangle.printArea());
 
         System.out.println("----------------------------------------TASK #5: ----------------------------------------");
-        Shape[] myShapes = {new Rectangle("grey", 4, 2),
+        Shape[] myShapes = {
+                new Rectangle("rose", 4, 2),
                 new Rectangle("orange", 3, 8),
                 new Rectangle("dark blue", 28, 10),
                 new Rectangle("white", 13, 50),
@@ -34,6 +32,7 @@ public class Main {
                 new Triangle("yellow", 13, 13, 22),
                 new Triangle("pink", 28, 10, 30)};
 
+        Arrays.sort(myShapes);
         for (Shape myShape : myShapes) {
             sumArea = sumArea + myShape.calcArea();
 
@@ -46,7 +45,7 @@ public class Main {
             if (myShape instanceof Triangle) {
                 sumTriangleArea = sumTriangleArea + myShape.calcArea();
             }
-            System.out.println(myShape.toString() + ". " + myShape.printArea());
+            myShape.draw();
         }
 
         System.out.println();
@@ -56,5 +55,11 @@ public class Main {
                 ", Circles total area is: " + ShapeUtilities.round(sumCircleArea, 2) +
                 ", Triangles total area is: " + ShapeUtilities.round(sumTriangleArea, 2) +
                 ".");
+
+        System.out.println("----------------------------------------TASK #4 from 12 lesson: ----------------------------------------");
+        Arrays.sort(myShapes, new ColorComparator());
+        for (Shape myShape : myShapes) {
+            myShape.draw();
+        }
     }
 }
